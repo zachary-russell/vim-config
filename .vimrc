@@ -24,6 +24,8 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'prettier/vim-prettier'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Townk/vim-autoclose'
+Plugin 'pangloss/vim-javascript'
+Plugin 'flazz/vim-colorschemes'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -44,3 +46,4 @@ set number
 set laststatus=2
 
 map <C-e> :NERDTreeToggle<CR>
+syntax on
