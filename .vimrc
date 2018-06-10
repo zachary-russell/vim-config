@@ -14,10 +14,12 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-Plugin 'itchyny/lightline.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
+Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
@@ -26,6 +28,7 @@ Plugin 'sheerun/vim-polyglot'
 Plugin 'Townk/vim-autoclose'
 Plugin 'pangloss/vim-javascript'
 Plugin 'flazz/vim-colorschemes'
+Plugin 'reedes/vim-colors-pencil'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -47,3 +50,21 @@ set laststatus=2
 
 map <C-e> :NERDTreeToggle<CR>
 syntax on
+
+" when running at every change you may want to disable quickfix
+let g:prettier#quickfix_enabled = 0
+
+let g:prettier#autoformat = 0
+autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+
+let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+if executable('ag')
+	  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endif
+let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+
+
+
+colorscheme pencil
+
+let g:airline_theme = 'base16'
