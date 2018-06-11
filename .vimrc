@@ -1,4 +1,3 @@
-set nocompatible              " be iMproved, required
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -16,7 +15,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/nerdtree'
 Plugin 'mattn/emmet-vim'
 Plugin 'edkolev/tmuxline.vim'
@@ -25,10 +23,14 @@ Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'prettier/vim-prettier'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'Townk/vim-autoclose'
+Plugin 'Chiel92/vim-autoformat'
 Plugin 'pangloss/vim-javascript'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'reedes/vim-colors-pencil'
+
+" PHP Support
+Plugin 'phpvim/phpcd.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -55,7 +57,7 @@ syntax on
 let g:prettier#quickfix_enabled = 0
 
 let g:prettier#autoformat = 0
-autocmd BufWritePre,TextChanged,InsertLeave *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
+autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
@@ -68,3 +70,16 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 colorscheme pencil
 
 let g:airline_theme = 'base16'
+
+set t_Co=256
+set background=dark
+set tabstop=2
+set shiftwidth=2
+set expandtab
+
+
+
+let g:autoformat_verbosemode=1
+filetype indent on
+set smartindent
+set ai
