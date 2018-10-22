@@ -21,13 +21,14 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'prettier/vim-prettier'
 Plugin 'sheerun/vim-polyglot'
 Plugin 'Chiel92/vim-autoformat'
 Plugin 'pangloss/vim-javascript'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'reedes/vim-colors-pencil'
+Plugin 'prettier/vim-prettier'
+Plugin 'wakatime/vim-wakatime'
 
 " PHP Support
 Plugin 'phpvim/phpcd.vim'
@@ -83,3 +84,12 @@ let g:autoformat_verbosemode=1
 filetype indent on
 set smartindent
 set ai
+
+nnoremap th  :tabfirst<CR>
+nnoremap tk  :tabnext<CR>
+nnoremap tj  :tabprev<CR>
+nnoremap tl  :tablast<CR>
+nnoremap tt  :tabedit<Space>
+nnoremap tn  :tabnext<Space>
+nnoremap tm  :tabm<Space>
+nnoremap td  :tabclose<CR>
