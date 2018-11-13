@@ -13,25 +13,22 @@ Plugin 'VundleVim/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
-Plugin 'scrooloose/nerdtree'
-Plugin 'mattn/emmet-vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'vim-syntastic/syntastic'
+Plugin 'alvan/vim-closetag'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'pangloss/vim-javascript'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'reedes/vim-colors-pencil'
-Plugin 'prettier/vim-prettier'
 Plugin 'wakatime/vim-wakatime'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'w0rp/ale'
 
-" PHP Support
-Plugin 'phpvim/phpcd.vim'
+
+Plugin 'StanAngeloff/php.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -51,14 +48,7 @@ filetype plugin indent on    " required
 set number
 set laststatus=2
 
-map <C-e> :NERDTreeToggle<CR>
 syntax on
-
-" when running at every change you may want to disable quickfix
-let g:prettier#quickfix_enabled = 0
-
-let g:prettier#autoformat = 0
-autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue PrettierAsync
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
@@ -74,13 +64,16 @@ let g:airline_theme = 'base16'
 
 set t_Co=256
 set background=dark
-set tabstop=2
-set shiftwidth=2
-set expandtab
+set autoindent
+set copyindent
+set preserveindent
+set softtabstop=0
+set noexpandtab
+set tabstop=3
+set shiftwidth=3
 
 
 
-let g:autoformat_verbosemode=1
 filetype indent on
 set smartindent
 set ai
@@ -93,3 +86,13 @@ nnoremap tt  :tabedit<Space>
 nnoremap tn  :tabnext<Space>
 nnoremap tm  :tabm<Space>
 nnoremap td  :tabclose<CR>
+
+
+"Ale settings
+let b:ale_fixers = {'javascript': ['prettier-eslintl'], 'php': ['phpcbf']}
+let g:ale_php_phpcbf_standard = 'WebDevStudios'
+let g:ale_php_phpcs_standard = 'WebDevStudios'
+let g:ale_fix_on_save = 1
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php'
+
