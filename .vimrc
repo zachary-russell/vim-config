@@ -26,6 +26,7 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
+"Plugin 'dpc/vim-smarttabs'
 
 
 Plugin 'StanAngeloff/php.vim'
@@ -48,7 +49,6 @@ filetype plugin indent on    " required
 set number
 set laststatus=2
 
-syntax on
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
@@ -64,19 +64,15 @@ let g:airline_theme = 'base16'
 
 set t_Co=256
 set background=dark
-set autoindent
-set copyindent
-set preserveindent
+
+
 set softtabstop=0
 set noexpandtab
 set tabstop=3
 set shiftwidth=3
-
-
-
-filetype indent on
+set autoindent
 set smartindent
-set ai
+set cindent
 
 nnoremap th  :tabfirst<CR>
 nnoremap tk  :tabnext<CR>
@@ -89,7 +85,7 @@ nnoremap td  :tabclose<CR>
 
 
 "Ale settings
-let b:ale_fixers = {'javascript': ['prettier-eslintl'], 'php': ['phpcbf']}
+let g:ale_fixers = {'scss': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier-eslint'], 'php': ['phpcbf']}
 let g:ale_php_phpcbf_standard = 'WebDevStudios'
 let g:ale_php_phpcs_standard = 'WebDevStudios'
 let g:ale_fix_on_save = 1
