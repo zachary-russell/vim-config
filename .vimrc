@@ -26,6 +26,7 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
+Plugin 'Yggdroot/indentLine'
 "Plugin 'dpc/vim-smarttabs'
 
 
@@ -92,3 +93,5 @@ let g:ale_fix_on_save = 1
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php'
 
+let g:indentLine_enabled = 1
+let g:indentLine_char = "⟩"
