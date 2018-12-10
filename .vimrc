@@ -26,7 +26,7 @@ Plugin 'reedes/vim-colors-pencil'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
-Plugin 'Yggdroot/indentLine'
+Plugin 'thaerkh/vim-indentguides'
 "Plugin 'dpc/vim-smarttabs'
 
 
@@ -86,12 +86,14 @@ nnoremap td  :tabclose<CR>
 
 
 "Ale settings
-let g:ale_fixers = {'scss': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier-eslint'], 'php': ['phpcbf']}
+let g:ale_fixers = {'markdown': ['prettier'], 'scss': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier-eslint'], 'php': ['phpcbf']}
 let g:ale_php_phpcbf_standard = 'WebDevStudios'
 let g:ale_php_phpcs_standard = 'WebDevStudios'
 let g:ale_fix_on_save = 1
 
 let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.php'
 
-let g:indentLine_enabled = 1
-let g:indentLine_char = "⟩"
+let g:vim_markdown_conceal = 0
+
+let g:indentguides_spacechar = '┆'
+let g:indentguides_tabchar = '|'
