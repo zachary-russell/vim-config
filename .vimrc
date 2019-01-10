@@ -28,6 +28,7 @@ Plugin 'w0rp/ale'
 Plugin 'thaerkh/vim-indentguides'
 Plugin 'StanAngeloff/php.vim'
 Plugin 'chriskempson/base16-vim'
+Plugin 'sickill/vim-pasta'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -68,7 +69,7 @@ set noexpandtab
 set tabstop=3
 set shiftwidth=3
 set autoindent
-set smartindent
+"set smartindent
 set cindent
 
 nnoremap th  :tabfirst<CR>
@@ -128,3 +129,5 @@ let g:lightline = {
       \ 'colorscheme': 'one',
       \ }
 let base16colorspace=256
+
+set nu rnu
