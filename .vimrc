@@ -15,20 +15,17 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
-Plugin 'edkolev/tmuxline.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'alvan/vim-closetag'
 Plugin 'sheerun/vim-polyglot'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'reedes/vim-colors-pencil'
 Plugin 'wakatime/vim-wakatime'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'w0rp/ale'
 Plugin 'thaerkh/vim-indentguides'
-Plugin 'StanAngeloff/php.vim'
 Plugin 'chriskempson/base16-vim'
 Plugin 'sickill/vim-pasta'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -45,9 +42,6 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 "
-set number
-set laststatus=2
-
 
 let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 if executable('ag')
@@ -56,13 +50,8 @@ endif
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 
-
-colorscheme base16-onedark
-
-
 set t_Co=256
 set background=dark
-
 
 set softtabstop=0
 set noexpandtab
@@ -126,8 +115,16 @@ function! s:MaybeUpdateLightline()
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'one',
+      \ 'colorscheme': 'wombat',
       \ }
 let base16colorspace=256
 
-set nu rnu
+""au BufEnter,BufNew *.php :set filetype=php.html
+
+let g:PHP_outdentphpescape = 0
+
+set nu rnu ignorecase smartcase spell undofile lazyredraw 
+
+let g:ale_sign_column_always = 1
+colorscheme base16-onedark
+syntax on
