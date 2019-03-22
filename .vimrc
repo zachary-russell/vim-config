@@ -1,60 +1,35 @@
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'itchyny/lightline.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'alvan/vim-closetag'
-Plugin 'sheerun/vim-polyglot'
-Plugin 'wakatime/vim-wakatime'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'w0rp/ale'
-Plugin 'thaerkh/vim-indentguides'
-Plugin 'chriskempson/base16-vim'
-Plugin 'sickill/vim-pasta'
-Plugin 'Shougo/deoplete.nvim'
-Plugin 'Shougo/neco-vim'
-Plugin 'Shougo/neco-syntax'
-Plugin 'Shougo/neosnippet.vim'
-Plugin 'Shougo/neosnippet-snippets'
-Plugin 'carlitux/deoplete-ternjs'
-Plugin 'ervandew/supertab'
-Plugin 'lvht/phpcd.vim'
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
-
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-	let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+call plug#begin()
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugs' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
 endif
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+Plug 'Shougo/neco-syntax'
+Plug 'lvht/phpcd.vim', { 'for': 'php', 'do': 'composer install' }
+Plug 'carlitux/deoplete-ternjs', { 'do': 'npm install -g tern' }
+Plug 'Shougo/neosnippet.vim'
+Plug 'Shougo/neosnippet-snippets'
+Plug 'honza/vim-snippets'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
+Plug 'itchyny/lightline.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'alvan/vim-closetag'
+Plug 'sheerun/vim-polyglot'
+Plug 'wakatime/vim-wakatime'
+Plug 'jiangmiao/auto-pairs'
+Plug 'w0rp/ale'
+Plug 'thaerkh/vim-indentguides'
+Plug 'chriskempson/base16-vim'
+Plug 'sickill/vim-pasta'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
 
+"Map fzf Files command to CTRL+p
+nnoremap <C-p> :Files<Cr>
 
 set t_Co=256
 set background=dark
@@ -78,7 +53,7 @@ nnoremap td  :tabclose<CR>
 
 
 "Ale settings
-let g:ale_fixers = {'markdown': ['prettier'], 'scss': ['prettier'], 'css': ['prettier'], 'javascript': ['prettier-eslint'], 'php': ['phpcbf']}
+let g:ale_fixers = {'markdown': ['prettier'], 'scss': ['prettier'], 'css': ['prettier'], 'vue': ['eslint'], 'javascript': ['eslint'], 'php': ['phpcbf']}
 let g:ale_php_phpcbf_standard = 'WebDevStudios'
 let g:ale_php_phpcs_standard = 'WebDevStudios'
 let g:ale_fix_on_save = 1
@@ -134,11 +109,11 @@ set nu rnu ignorecase smartcase spell undofile lazyredraw
 let g:ale_sign_column_always = 1
 colorscheme base16-onedark
 syntax on
-
-" Use deoplete.
 let g:deoplete#enable_at_startup = 1
 
-" Plugin key-mappings.
+"let g:deoplete#ignore_sources = get(g:, 'deoplete#ignore_sources', {})
+"let g:deoplete#ignore_sources.php = ['omni']
+"" Plug key-mappings.
 " Note: It must be "imap" and "smap".  It uses <Plug> mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
 smap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -151,5 +126,11 @@ xmap <C-k>     <Plug>(neosnippet_expand_target)
 " \ neosnippet#expandable_or_jumpable() ?
 " \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-			\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-let g:neosnippet#enable_completed_snippet = 1
+\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+let g:neosnippet#enable_snipmate_compatibility = 1
+
