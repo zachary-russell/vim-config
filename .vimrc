@@ -26,10 +26,13 @@ Plug 'chriskempson/base16-vim'
 Plug 'sickill/vim-pasta'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'pbogut/fzf-mru.vim'
+Plug 'airblade/vim-rooter'
 call plug#end()
 
 "Map fzf Files command to CTRL+p
-nnoremap <C-p> :Files<Cr>
+nnoremap <C-SPACE> :Files<Cr>
+nnoremap <C-p> :FZFMru<Cr>
 
 set t_Co=256
 set background=dark
@@ -133,4 +136,8 @@ if has('conceal')
   set conceallevel=2 concealcursor=niv
 endif
 let g:neosnippet#enable_snipmate_compatibility = 1
+function! s:find_git_root()
+	  return system('git rev-parse --show-toplevel 2> /dev/null')[:-2]
+  endfunction
 
+  command! ProjectFiles execute 'Files' s:find_git_root()
